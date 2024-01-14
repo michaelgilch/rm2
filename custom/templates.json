@@ -1,0 +1,91 @@
+{
+  "templates": [
+    {
+      "name": "Blank",
+      "filename": "Blank",
+      "iconCode": "\ue9fe",
+      "categories": [
+        "Creative"
+      ]
+    },
+    {
+      "name": "Grid small",
+      "filename": "P Grid small",
+      "iconCode": "\ue99a",
+      "categories": [
+        "Grids"
+      ]
+    },
+    {
+      "name": "Grid mini",
+      "filename": "grid_mini",
+      "iconCode": "\ue99d",
+      "categories": [
+        "Grids",
+        "Custom"
+      ]
+    },
+    {
+      "name": "Grid micro",
+      "filename": "grid_micro",
+      "iconCode": "\ue99e",
+      "categories": [
+        "Grids",
+        "Custom"
+      ]
+    },
+    {
+      "name": "Lined small",
+      "filename": "P Lines small",
+      "iconCode": "\ue9a7",
+      "categories": [
+        "Lines"
+      ]
+    },
+    {
+      "name": "Lines mini",
+      "filename": "lines_mini",
+      "iconCode": "\ue9a8",
+      "categories": [
+        "Custom",
+        "Lines"
+      ]
+    },
+    {
+    "name": "Weekly",
+    "filename": "weekly",
+    "iconCode": "\ue9da",
+    "categories": [
+      "Organize",
+      "Custom"
+    ]
+  },
+  {
+    "name": "Reflections",
+    "filename": "reflections",
+    "iconCode": "\ue9d5",
+    "categories": [
+      "Organize",
+      "Custom"
+    ]
+  },
+  {
+      "name": "Meeting",
+      "filename": "meeting",
+      "iconCode": "\ue9d9",
+      "categories": [
+        "Organize",
+        "Custom"
+      ]
+    },
+    {
+      "name": "Checklist",
+      "filename": "checklist",
+      "iconCode": "\ue98f",
+      "categories": [
+        "Organize",
+        "Custom"
+      ]
+    }
+  ]
+}

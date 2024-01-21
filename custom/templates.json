@@ -70,6 +70,15 @@
     ]
   },
   {
+    "name": "Weekly Reflections",
+    "filename": "wk_reflect",
+    "iconCode": "\ue9d5",
+    "categories": [
+      "Organize",
+      "Custom"
+    ]
+  },
+  {
       "name": "Meeting",
       "filename": "meeting",
       "iconCode": "\ue9d9",

@@ -7,9 +7,9 @@
 # Creates a UUID from the template's 'name' field.
 # Writes out/<uuid>.template, out/<uuid>.content and out/<uuid>.metadata.
 #
-#   <uuid>.template   A copy of the given .template, rewritten on every run.
-#   <uuid>.content    An empty JSON object.
-#   <uuid>.metadata   Written only if missing, so edits are retained.
+# 	<uuid>.template   A copy of the given .template, rewritten on every run.
+# 	<uuid>.content    An empty JSON object.
+# 	<uuid>.metadata   Written only if missing, so edits are retained.
 #
 # The UUID is derived from the template's "name", so the same name always gives
 # the same UUID and a reinstall replaces the template on the tablet.
@@ -32,19 +32,19 @@ cp "$SRC" "$OUT/$UUID.template"
 printf '{\n}\n' > "$OUT/$UUID.content"
 
 if [ -e "$OUT/$UUID.metadata" ]; then
-  echo "Kept the existing $UUID.metadata; delete it to regenerate."
+	echo "Kept the existing $UUID.metadata; delete it to regenerate."
 else
-  NOW=$(date +%s%3N)
-  cat > "$OUT/$UUID.metadata" <<EOF
+	NOW=$(date +%s%3N)
+	cat > "$OUT/$UUID.metadata" <<EOF
 {
-    "createdTime": "$NOW",
-    "lastModified": "$NOW",
-    "new": false,
-    "parent": "",
-    "pinned": false,
-    "source": "michaelgilch.custom",
-    "type": "TemplateType",
-    "visibleName": "$NAME"
+	"createdTime": "$NOW",
+	"lastModified": "$NOW",
+	"new": false,
+	"parent": "",
+	"pinned": false,
+	"source": "custom",
+	"type": "TemplateType",
+	"visibleName": "$NAME"
 }
 EOF
 fi
@@ -54,6 +54,6 @@ cat <<DONE
 UUID=$UUID   ("$NAME")
 
 Edit .metadata to customize before installing on ReMarkable.
-  scp $OUT/$UUID.template $OUT/$UUID.content $OUT/$UUID.metadata root@10.11.99.1:$XDIR/
-  ssh root@10.11.99.1 "systemctl restart xochitl"
+	scp $OUT/$UUID.template $OUT/$UUID.content $OUT/$UUID.metadata root@10.11.99.1:$XDIR/
+	ssh root@10.11.99.1 "systemctl restart xochitl"
 DONE

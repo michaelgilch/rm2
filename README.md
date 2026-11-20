@@ -26,7 +26,7 @@ scp ./custom/template_name.*  root@10.11.99.1:/usr/share/remarkable/templates/
 It looks like the built-in templates have been moved to .template files in `/usr/share/remarkable/templates`. Anything copied there before 3.30 is ignored.
 The .template files are JSON descriptions
 
-It looks like you can add custom templates as "Methods" (`.template` + `.content` + `.metadata`) in `/home/root/.local/share/remarkable/xochitl/`.
+It looks like you can add custom templates as "Methods" (`.template` + `.content` + `.metadata`) in `/home/root/.local/share/remarkable/xochitl/` with the other notebooks, not with the built-in templates at `/usr/share/remarkable/templates/`.
 
 The content of the 3 files was determined by poking around in the existing template files and a few added Methods.
 

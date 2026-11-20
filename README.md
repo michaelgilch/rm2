@@ -1,6 +1,22 @@
 # rm2
 
-reMarkable2 custom templates
+**WIP**
+
+Custom templates/Methods for reMarkable Pure tablets
+
+**Firmware 3.30 stopped reading custom templates from `/usr/share/remarkable/templates/`.**
+This repo works out how templates are now stored and houses my custom "Methods".
+
+## Overview
+
+- **Custom-Methods-Guide.md**: My notes for creating custom templates/Methods.
+- **templates/**: My collection of custom templates/Methods.
+- **tools/**: Scripts to aide in the process of building templates as well as
+    copying them to a reMarkable tablet.
+
+
+--
+
 
 ## Creating Templates (using Inkscape)
 

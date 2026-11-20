@@ -42,6 +42,7 @@ Copies of any Methods downloaded to the tablet can be pulled using the following
 
 ```bash
 mkdir -p reference/methods/
-for id in $(ssh root@10.11.99.1 "cd /home/root/.local/share/remarkable/xochitl && grep -l '\"	TemplateType\"' *.metadata | sed 's/\.metadata$//'"); do
-	scp -r "root@10.11.99.1:/home/root/.local/share/remarkable/xochitl/$id.*" reference/methods/
+XDIR=/home/root/.local/share/remarkable/xochitl
+for id in $(ssh root@10.11.99.1 "cd $XDIR && grep -l '\"TemplateType\"' *.metadata | sed 's/\.metadata$//'"); do
+	scp -r "root@10.11.99.1:$XDIR/$id.*" reference/methods/
 ```

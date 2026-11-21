@@ -1,0 +1,98 @@
+{
+    "name": "Engineering paper",
+    "author": "reMarkable",
+    "iconData": "PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDE1MCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF8xNDIyXzU3KSI+CjxwYXRoIGQ9Ik0xNDYgNFYxOTZINFY0SDE0NlpNMTUwIDBIMFYyMDBIMTUwVjBaIiBmaWxsPSJibGFjayIvPgo8cmVjdCB4PSI1OCIgd2lkdGg9IjQiIGhlaWdodD0iMjAwIiBmaWxsPSJibGFjayIvPgo8cmVjdCB4PSIyOSIgd2lkdGg9IjQiIGhlaWdodD0iMjAwIiBmaWxsPSJibGFjayIvPgo8cmVjdCB4PSI4OCIgd2lkdGg9IjQiIGhlaWdodD0iMjAwIiBmaWxsPSJibGFjayIvPgo8cmVjdCB4PSIxMTciIHdpZHRoPSI0IiBoZWlnaHQ9IjIwMCIgZmlsbD0iYmxhY2siLz4KPHJlY3QgeT0iMjUiIHdpZHRoPSIxNTAiIGhlaWdodD0iNCIgZmlsbD0iYmxhY2siLz4KPHJlY3QgeT0iNTQiIHdpZHRoPSIxNTAiIGhlaWdodD0iNCIgZmlsbD0iYmxhY2siLz4KPHJlY3QgeT0iODMiIHdpZHRoPSIxNTAiIGhlaWdodD0iNCIgZmlsbD0iYmxhY2siLz4KPHJlY3QgeT0iMTEyIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjQiIGZpbGw9ImJsYWNrIi8+CjxyZWN0IHk9IjE0MSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSI0IiBmaWxsPSJibGFjayIvPgo8cmVjdCB5PSIxNzAiIHdpZHRoPSIxNTAiIGhlaWdodD0iNCIgZmlsbD0iYmxhY2siLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF8xNDIyXzU3Ij4KPHJlY3Qgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMDAiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==",
+    "templateVersion": "1.0.1",
+    "formatVersion": 1,
+    "categories": ["Productivity", "Note-taking"],
+    "labels": ["Meetings"],
+    "orientation": "portrait",
+    "items": [
+        {
+            "type": "group",
+            "boundingBox": {
+                "x": 0,
+                "y": 0,
+                "width": 150,
+                "height": 150
+            },
+            "repeat": {
+                "columns": "infinite",
+                "rows": "infinite"
+            },
+            "children": [
+                {
+                    "type": "path",
+                    "strokeWidth": 1,
+                    "data": [
+                        "M", 0, 0, "L", "parentWidth", 0
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "boundingBox": {
+                "x": 0,
+                "y": 0,
+                "width": 150,
+                "height": 150
+            },
+            "repeat": {
+                "columns": "infinite",
+                "rows": "infinite"
+            },
+            "children": [
+                {
+                    "type": "path",
+                    "strokeWidth": 1,
+                    "data": [
+                        "M", 0, 0, "L", 0, "parentHeight"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "boundingBox": {
+                "x": 0,
+                "y": 0,
+                "width": 30,
+                "height": 30
+            },
+            "repeat": {
+                "columns": "infinite",
+                "rows": "infinite"
+            },
+            "children": [
+                {
+                    "type": "path",
+                    "data": [
+                        "M", 0, 0, "L", "parentWidth", 0
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "boundingBox": {
+                "x": 0,
+                "y": 0,
+                "width": 30,
+                "height": 30
+            },
+            "repeat": {
+                "columns": "infinite",
+                "rows": "infinite"
+            },
+            "children": [
+                {
+                    "type": "path",
+                    "data": [
+                        "M", 0, 0, "L", 0, "parentHeight"
+                    ]
+                }
+            ]
+        }
+    ]
+}

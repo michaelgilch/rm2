@@ -46,3 +46,23 @@ XDIR=/home/root/.local/share/remarkable/xochitl
 for id in $(ssh root@10.11.99.1 "cd $XDIR && grep -l '\"TemplateType\"' *.metadata | sed 's/\.metadata$//'"); do
 	scp -r "root@10.11.99.1:$XDIR/$id.*" reference/methods/
 ```
+
+## Research
+
+Determine top-level keys of templates:
+
+```bash
+jq -r 'keys_unsorted[]' *.template | sort | uniq -c | sort -rn
+```
+```text
+     65 templateVersion
+     65 orientation
+     65 name
+     65 items
+     65 formatVersion
+     65 constants
+     65 categories
+     65 author
+     16 supportedDevices
+      1 iconData
+```

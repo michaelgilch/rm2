@@ -70,7 +70,7 @@ There are only three item types: group, path, text. Everything a built-in draws 
 
 Every repeat value:
 
-```
+```bash
 jq -c '.. | objects | .repeat? // empty' *.template | sort | uniq -c | sort -rn
 ```
 ```
@@ -97,6 +97,23 @@ jq -c '.. | objects | .repeat? // empty' *.template | sort | uniq -c | sort -rn
 	 1 {"columns":"columns","rows":5}
 	 1 {"columns":2}
 ```
+
+Path commands, colors, line widths, font sizes:
+
+```bash
+jq -r '.. | objects | select(.type=="path") | .data[] | strings | select(test("^[A-Za-z]$"))' *.template | sort | uniq -c
+jq -r '.. | objects | (.strokeColor?, .fillColor?) // empty' *.template | sort | uniq -c
+jq -r '.. | objects | .strokeWidth? // empty' *.template | sort | uniq -c
+jq -r '.. | objects | .fontSize? // empty' *.template | sort -n | uniq -c
+```
+```
+Paths: M,L,C, and Z
+Colors: #000000 and #ffffff
+Stroke widths: 1 and 2
+Font sizes: 24, 25, 32, and 72
+```
+
+
 
 ## Methods
 

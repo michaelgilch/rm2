@@ -72,9 +72,9 @@ jq -r '.. | objects | .fontSize? // empty' *.template | sort -n | uniq -c
 - Most expressed names are defined in the files **constants** key. Some are 
 	defined nowhere so must be built-in (**templateWidth**, **templateHeight**, 
 	**parentWidth**, **parentHeight**, **textWidth**, **paperOriginX**).
-	
 
-## Methods
+
+## Method Templates
 
 Methods are named by UUID just like notebooks, and reside in the same notebook
 store. Each Method has a **.template** file, just like the original built-in 
@@ -94,4 +94,7 @@ for id in $(ssh root@10.11.99.1 "cd $XDIR && grep -l '\"TemplateType\"' *.metada
 	scp -r "root@10.11.99.1:$XDIR/$id.*" reference/methods/
 ```
 
+- Methods differ in structure by always having an **iconData** key that points
+	to a base64-encoded SVG.
+- **templateVersion** values are `1.0.1` in the couple methods I use.
 

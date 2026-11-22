@@ -136,3 +136,33 @@ the json-defined constants.
 - `templateWidth`, `templateHeight` - The page size in pixels.
 - `parentWidth`, `parentHeight` - The enclosing group's boundingBox width and height.
 
+### Items
+
+**`group`** positions children.
+
+- `boundingBox`: `{x, y, width, height}` - Children are drawn with x, y as their
+	origin and see width and height as `parentWidth` and `parentHeight`.
+- `repeat` takes rows and columns. See below.
+- `children` - items, including nesting.
+
+**`repeat`**
+
+- `"rows": "down"` - example: even ruled templates
+- `"rows": "infinite", "columns": "infinite"` - example: grids, dots
+- `"columns": "right"` - example: grid margin
+
+**`path`** draws a shape.
+
+- `data` - SVG-style commands in a flat list, with coordinates relative to the group.
+	`M` (move), `L` (line), `C` (curve), `z` (end)
+- `strokeWidth` in pixels.
+- `strokeColor` in hex. Built-ins only use black and white.
+- `fillColor` fills a closed path.
+
+**`text`**
+
+- `text` - the string
+- `fontSize`
+- `position` - `{x, y`
+- `bold`
+

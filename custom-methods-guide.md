@@ -3,10 +3,6 @@
 This guide explains my findings around creating custom "Methods" for reMarkable
 tablets after v3.30 broke the SVG template versions I previously deployed.
 
-## Overview
-
-## Template Locations
-
 Templates are now stored in 2 locations:
 
 - `/usr/share/remarkable/templates/` houses the 65 built-in templates, referred
@@ -15,7 +11,7 @@ Templates are now stored in 2 locations:
 	format of templates alongside all of your notebooks. These will be referred
 	to as **Methods** from here on.
 
-## Templates
+## Built-in Templates
 
 The same 65 built-in templates exist after the 3.30 update, but are now JSON 
 descriptions rather than SVG files.
@@ -26,8 +22,6 @@ Copies of the built-in templates can be pulled using the following:
 mkdir -p reference/templates/
 scp -r root@10.11.99.1:/usr/share/remarkable/templates reference/templates
 ```
-
-### Findings
 
 Poking around with `jq`...
 
@@ -73,6 +67,7 @@ jq -r '.. | objects | .fontSize? // empty' *.template | sort -n | uniq -c
 	defined nowhere so must be built-in (**templateWidth**, **templateHeight**, 
 	**parentWidth**, **parentHeight**, **textWidth**, **paperOriginX**).
 
+---
 
 ## Method Templates
 
@@ -80,10 +75,10 @@ Methods are named by UUID just like notebooks, and reside in the same notebook
 store. Each Method has a **.template** file, just like the original built-in 
 templates. consists of 4 files each, with matching UUIDs.
 
-- **<UUID>.content**: 
-- **<UUID>.metadata**: 
-- **<UUID>.template**:
-- **<UUID>.thumbnails/**: 
+- **<UUID>.content**: An empty JSON object.
+- **<UUID>.metadata**: Name and document type info.
+- **<UUID>.template**: The drawing, as JSON.
+- **<UUID>.thumbnails/**: Decoded `iconData`, created by the tablet.
 
 Copies of any Methods downloaded to the tablet can be pulled using the following:
 
@@ -97,4 +92,47 @@ for id in $(ssh root@10.11.99.1 "cd $XDIR && grep -l '\"TemplateType\"' *.metada
 - Methods differ in structure by always having an **iconData** key that points
 	to a base64-encoded SVG.
 - **templateVersion** values are `1.0.1` in the couple methods I use.
+
+## .metadata
+
+```json
+{
+	"createdTime": "1793714973468",
+	"lastModified": "1793714973468",
+	"new": false,
+	"parent": "",
+	"pinned": false,
+	"source": "com.remarkable.methods",
+	"type": "TemplateType",
+	"visibleName": "Engineering paper"
+}
+```
+
+- `createdTime` and `lastModified` are millis since 1970, as strings.
+- `TemplateType` makes the document a template. Notebooks are `DocumentType`, 
+	and folders are `CollectionType`.
+
+## .template
+
+### Coordinates
+
+- **rm2** (reMarkable2) and **rmPP** (Paper Pure) are both 1404 x 1872, 226 ppi.
+- The origin is the top-left corner.
+
+### Constants
+
+```json
+"constants": [
+    {"mobileMaxWidth": 1000},
+    {"mobileOffsetY": 160},
+    {"magicOffsetY": 0},
+    {"offsetY": "templateWidth > mobileMaxWidth ? magicOffsetY : mobileOffsetY"}
+]
+```
+
+The following names seem to be supplied by the tablet, as they are not in any of
+the json-defined constants.
+
+- `templateWidth`, `templateHeight` - The page size in pixels.
+- `parentWidth`, `parentHeight` - The enclosing group's boundingBox width and height.
 

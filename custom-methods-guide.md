@@ -27,93 +27,52 @@ mkdir -p reference/templates/
 scp -r root@10.11.99.1:/usr/share/remarkable/templates reference/templates
 ```
 
-Determine top-level keys of templates:
+### Findings
+
+Poking around with `jq`...
 
 ```bash
+# Top level keys
 jq -r 'keys_unsorted[]' *.template | sort | uniq -c | sort -rn
-```
-```
-	65 templateVersion
-	65 orientation
-	65 name
-	65 items
-	65 formatVersion
-	65 constants
-	65 categories
-	65 author
-	16 supportedDevices
-	 1 iconData
-```
 
-Item types and keys:
-
-```bash
+# Items and types
 jq -r '.. | objects | select(.type? | IN("group","path","text")) | .type + ": " + (keys|join(","))' *.template | sort | uniq -c | sort -rn
-```
-```
-	73 group: boundingBox,children,repeat,type
-	67 path: data,type
-	60 text: fontSize,position,text,type
-	34 path: data,id,type
-	29 group: boundingBox,children,id,repeat,type
-	11 group: boundingBox,children,type
-	 6 path: data,fillColor,type
-	 6 path: antialiasing,data,fillColor,strokeWidth,type
-	 2 path: data,strokeWidth,type
-	 2 group: boundingBox,children,id,type
-	 1 path: data,id,strokeWidth,type
-	 1 path: data,id,strokeColor,strokeWidth,type
-	 1 path: data,fillColor,id,strokeColor,type
-```
 
-There are only three item types: group, path, text. Everything a built-in draws is made of those.
-
-Every repeat value:
-
-```bash
+# Repeat values
 jq -c '.. | objects | .repeat? // empty' *.template | sort | uniq -c | sort -rn
-```
-```
-	34 {"rows":"down"}
-	 8 {"rows":"infinite","columns":"right"}
-	 7 {"rows":5}
-	 7 {"rows":2}
-	 6 {"rows":"infinite","columns":"infinite"}
-	 4 {"rows":"up","columns":"infinite"}
-	 4 {"rows":"down","columns":"infinite"}
-	 4 {"rows":6}
-	 4 {"rows":3}
-	 3 {"rows":"rowCount"}
-	 3 {"rows":4}
-	 3 {"columns":"infinite","rows":"infinite"}
-	 2 {"rows":"up"}
-	 2 {"rows":8}
-	 2 {"columns":"infinite","rows":"up"}
-	 2 {"columns":"infinite","rows":"down"}
-	 2 {"columns":2,"rows":2}
-	 1 {"rows":"infinite"}
-	 1 {"rows":19}
-	 1 {"rows":17}
-	 1 {"columns":"columns","rows":5}
-	 1 {"columns":2}
-```
 
-Path commands, colors, line widths, font sizes:
-
-```bash
+# Path commands
 jq -r '.. | objects | select(.type=="path") | .data[] | strings | select(test("^[A-Za-z]$"))' *.template | sort | uniq -c
+
+# Colors
 jq -r '.. | objects | (.strokeColor?, .fillColor?) // empty' *.template | sort | uniq -c
+
+# Widths
 jq -r '.. | objects | .strokeWidth? // empty' *.template | sort | uniq -c
+
+# Fonts
 jq -r '.. | objects | .fontSize? // empty' *.template | sort -n | uniq -c
 ```
-```
-Paths: M,L,C, and Z
-Colors: #000000 and #ffffff
-Stroke widths: 1 and 2
-Font sizes: 24, 25, 32, and 72
-```
 
-
+- Every file has the same eight top-level keys: **name**, **author**, 
+	**templateVersion**, **formatVersion**, **categories**, **orientation**, 
+	**constants**, and **items**.
+- 16 of the 65 files also list **supportedDevices** (rm2, rmPP).
+- One has an **iconData** key, and its value is "None".
+- There are only 3 building blocks. Everythign is drawn with **group**, **path**,
+	and **text**. 115 groups, 118 paths, and 60 text items across the 65 files.
+- Groups position and repeat things. Paths draw lines and shapes.
+- Most groups repeat. Ruled line templates use **"rows": "down"**. Grids and dots
+	repeat in all directions with **infinite**, and checklists use a fix count.
+- Drawing vocab is small: **M** (move), **L** (line), **C** (curve), **Z** (end).
+- Colors are only black and white.
+- **strokeWidth** is always 1 or 2 and is rarely changed.
+- Text uses 4 font sizes: 24, 25, 32, and 72.
+- Values can be expressed. Many numbers are strings: "templateWidth / 2 - templateHeight / 2".
+- Most expressed names are defined in the files **constants** key. Some are 
+	defined nowhere so must be built-in (**templateWidth**, **templateHeight**, 
+	**parentWidth**, **parentHeight**, **textWidth**, **paperOriginX**).
+	
 
 ## Methods
 
